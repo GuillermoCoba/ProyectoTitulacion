@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en" xml:lang="en">
+<!--<head><meta http-equiv="Content-Type" content="text/html; charset=gb18030"> -->
+<head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="https://mexitoursonline.com/engine/js/jquery.min.js"></script>
+    <script type="text/javascript" src="https://mexitoursonline.com/engine/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">    
+  <link href="https://agencias.marcopolo.mx/content/templates/default/images/favicon.png' ?>" rel="icon">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!--    <script type="text/javascript" src="https://mexitoursonline.com/engine/js/jquery.min.js"></script>-->
+    <!--<script type="text/javascript" src="https://mexitoursonline.com/engine/js/bootstrap.min.js"></script>-->
+<script language="javascript">
+var Sys={
+    path:{
+        http:'{$system.path.http}',
+        img:'{$system.path(img)}',
+        js:'{$system.path.js}'  
+    },
+    user_pic:"{$system.user_pic}"
+};
+</script>
+{include:nav/mod_meta.tpl,find_controller}
+{include:nav/mod_css.tpl,find_controller}
+{include:nav/mod_js.tpl}
+<title>{$Title}</title>
+<script language="javascript">
+$(document).ready(function(){
+    $('.nav').superfish({
+        hoverClass : 'sfHover',
+        pathClass : 'overideThisToUse',
+        delay : 0,
+        animation : {height: 'show'},
+        speed : 'normal',
+        autoArrows : false,
+        dropShadows : false, 
+        disableHI : false, 
+        onInit : function(){},
+        onBeforeShow : function(){},
+        onShow : function(){},
+        onHide : function(){}
+    });
+});
+</script>
+</head>
+<body>
+<div id="container">
+
+    <div >
+       
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+  
+       <a href="{url:home}" class="navbar-brand"><img style="margin-top: 0px; width: 170px; height:50px;filter: contrast(200%);" src="{$system.path(img)}logoMP.png" /></a>
+
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="https://www.mexitoursonline.com">{$lang.hoteles}</a>
+        <a class="nav-item nav-link" href="{url:circuito/list}">{$lang.circuitos}</a>
+        <a class="nav-item nav-link" href="https://www.mexitoursonline.com">{$lang.tours}</a>
+        <a class="nav-item nav-link" href="{url:nosotros/general}">{$lang.nosotros}</a>
+        </div>
+        <div class="navbar-nav ml-auto">
+        <ul class="icons right" style="margin-top: 5px;">
+            {if:$system.is_logged}
+            <li><a class="nav-item nav-link" title="Carrito de compras" href="{url:checkout/list}"><img src="{$system.path(img)}menu_cart.png" /></a></li>
+            <li><a class="nav-item nav-link" title="Mi panel" href="{url:panel}"><img src="{$system.path(img)}menu_panel.png" /></a></li>
+            <li><a  class="nav-item nav-link" title="Cerrar sesión" href="{url:login/logout}"><img src="{$system.path(img)}menu_logout.png" /></a></li>
+            {else}
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-sm">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            {if:!$system.is_logged}
+                            <h4 class="modal-title">{$lang.iniciar_sesion}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div style="margin-bottom: 10px;">
+                                <div style="background-color: #f6f6f6;">
+                                    <form action="{url:login/check}" method="post" enctype="multipart/form-data" id="form_login">
+                                    <i class="fas fa-user"></i><span style="display: inline-block; width: 80px; font-weight: bold; color: #4B4849; margin-left: 5px;">{$lang.usuario}: </span><input class="req_login" name="usuario" value="" style="margin-bottom: 5px;" type="text" />
+                                        <br>
+                                      <i class="fas fa-lock"></i>  <span style="display: inline-block; width: 80px; font-weight: bold; color: #4B4849; margin-left: 5px;">{$lang.contrasena}: </span><input class="req_login" name="pass" value="" style="margin-bottom: 5px;" type="password" />
+
+                                    </form>
+                                </div>
+                            </div>
+                            {/if}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" href="#" onclick="checkLogin();" class="btn btn-primary" style="background-color:#FF4500">{$lang.acceder}</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+<!--            <li data-toggle="modal" data-target="#myModal"><a class="top"  style=" margin-left: 10px; font-family: Arial, Helvetica, sans-serif; font-size: 18px; color: #ffffff;" title="Iniciar sesión" href="{url:login}" ><img src="{$system.path(img)}menu_login.png" />      {$lang.iniciar_sesion}</a></li> -->
+            <li data-toggle="modal" data-target="#myModal"><a class="top"  style=" margin-left: 10px; font-family: Arial, Helvetica, sans-serif; font-size: 18px; color: #ffffff;" title="Iniciar sesión"><img src="{$system.path(img)}menu_login.png" />      {$lang.iniciar_sesion}</a></li>
+            {/if}
+</ul>
+        </div>
+        
+    </div>
+
+   
+        
+        
+
+
+        <!--{if:$system.is_logged}
+        <div class="div2">{$lang.bienvenido} <span>{$system.user.nombre}</span>&nbsp;&nbsp;<a href="{url:login/logout}" style="color: #000">{$lang.desconectarme}</a>
+        <br />{$lang.hoy_es} {$system.now.date("verbose")}
+        </div>
+        {else}
+        <div class="div2"><img src="{$system.path(img)}lock.png" alt="" style="position: relative; top: 3px;" />&nbsp;Bienvenido <span>Invitado</span>
+        <br />Hoy es {$system.now.date("verbose")}
+        </div>
+        {/if}-->
+        
+        
+    </nav>
+  
+    <div id="content">
+        <!-- Breadcrumb -->
+        {include:nav/mod_breadcrumb.tpl,find_controller}
+        <!-- Mensajes del sistema -->
+        {if:$system.msg(error)}
+        <div class="error-msg">{$system.msg(error)}</div>
+        {elseif:$system.msg(info)}
+        <div class="sys-msg">{$system.msg(info)}</div>
+        {/if}
+        <div class="box container-fluid">
+            <!-- Contenedor principal -->
+            {$Container}
+        </div>
+    </div>
+</div>
+
+</div>
+ 
+<footer class="bg-primary text-white text-center text-lg-start" style="background:rgba(249,90,32)">
+  <!-- Grid container -->
+  <div class="container p-12">
+    <!--Grid row-->
+    <div class="row">
+<a href="https://www.instagram.com/marcopolooperadora1" target="_blank" style="color:white;"><div class="col-sm-4"><i class='fab fa-instagram fa-lg'></i></div></a>
+<a href="https://www.facebook.com/MarcoPoloOperadora" target="_blank" style="color:white;"><div class="col-sm-4"><i class='fab fa-facebook fa-lg'></i></div></a>
+<a href="https://twitter.com/OperadoraPolo" target="_blank" style="color:white;"><div class="col-sm-4"><i class='fab fa-twitter fa-lg'></i></div></a>
+
+
+    </div>
+    <!--Grid row-->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+    © 2021 Copyright: Marco Polo
+    
+  </div>
+  <!-- Copyright -->
+</footer>
+
+</body>
+</html>

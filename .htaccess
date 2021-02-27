@@ -1,0 +1,23 @@
+
+# HTID:15772971: DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES BELOW
+php_value display_errors 1
+# DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES ABOVE HTID:15772971:
+Options -Indexes
+RewriteEngine On
+RewriteRule ^About?$ /views/main/about.php
+RewriteRule ^Login?$ /views/login/login.php
+RewriteRule ^Servicios?$ /views/main/servicios.php
+RewriteRule ^NuevoUsuario?$ /views/login/nuevousuario.php
+RewriteRule ^NuevoTaller?$ /views/login/nuevaempresa.php
+RewriteRule ^Exito?$ /views/login/exito.php
+RewriteRule ^Dashboard?$ /views/dashboard/dashboard.php
+RewriteRule ^Salir?$ /salir.php
+RewriteRule ^Perfil?$ /views/dashboard/perfil.php
+RewriteRule ^Recuperar?$ /views/login/recuperarpw.php
+RewriteRule ^Cambiar?$ /change.php
+RewriteRule ^Services?$ /views/dashboard/servicios.php
+RewriteRule ^Mapa?$ /views/dashboard/mapa.php
+RewriteRule ^Chat?$ /views/dashboard/chat.php
+RewriteRule ^Reportes?$ /views/dashboard/reporte.php
+
+
